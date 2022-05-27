@@ -1,0 +1,11 @@
+:root {
+  --cameo-pink: #dbb1bcff;
+  --thistle: #d3c4e3ff;
+  --blue-bell: #8f95d3ff;
+  --baby-blue: #89daffff;
+  --umber: #58504aff;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+}
