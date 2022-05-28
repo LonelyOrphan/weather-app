@@ -3,9 +3,17 @@
   --thistle: #d3c4e3ff;
   --blue-bell: #8f95d3ff;
   --baby-blue: #89daffff;
-  --umber: #58504aff;
+  --umber: #2c2926;
 }
 
 body {
   font-family: "Noto Sans JP", sans-serif;
+}
+
+.my-nav {
+  background-color: var(--blue-bell);
+  color: var(--umber);
+  text-decoration: none;
+  font-size: x-large;
+  font-weight: 400;
 }
