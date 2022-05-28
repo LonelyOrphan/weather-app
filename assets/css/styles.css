@@ -28,3 +28,7 @@ body {
   text-align: center;
   cursor: pointer;
 }
+
+.weather-info-container {
+  background-color: var(--thistle);
+}
