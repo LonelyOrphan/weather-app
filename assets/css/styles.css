@@ -17,3 +17,14 @@ body {
   font-size: x-large;
   font-weight: 400;
 }
+
+.my-list-item {
+  color: var(--umber);
+  /* margin: 1rem 0rem;
+  padding: 0.5rem; */
+  border-radius: 1rem;
+  list-style: none;
+  border: var(--blue-bell) 1px solid;
+  text-align: center;
+  cursor: pointer;
+}
