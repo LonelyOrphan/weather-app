@@ -1,6 +1,7 @@
 const searchHistoryContainer = $("#cities-search-history");
 // const recentSearches = readFromLocalStorage("recentSearches", []);
-const recentSearches = ["London", "Berlin", "Tokyo"];
+const recentSearches = ["Sclay"];
+const searchForm = $("#search-form");
 
 // Get info from LS
 const readFromLocalStorage = (key, defaultValue) => {
@@ -14,6 +15,12 @@ const readFromLocalStorage = (key, defaultValue) => {
   }
 };
 
+const saveToLocalStorage = (key, value) => {
+  // convert value to string
+  const valueAsString = JSON.stringify(value);
+  localStorage.setItem(key, valueAsString);
+};
+
 const renderSearches = () => {
   const searchList = $("#search-list");
   //get search results from localstorage
@@ -23,24 +30,32 @@ const renderSearches = () => {
       return `<li class="my-list-item py-2 my-2" data-city="${city}">${city}</li>`;
     };
     const recentCities = recentSearches.map(createRecentCity).join("");
-    console.log(recentCities);
     const ul = `<ul id="search-list" class="list-group">${recentCities}</ul>`;
+    console.log(ul);
     searchHistoryContainer.append(ul);
   } else {
-    const alert = `<div class="alert alert-light" role="alert">
+    const alert = `<div id="empty-history-alert" class="alert alert-light text-center" role="alert">
       You have no recent searches`;
-    searchList.append(alert);
+    searchHistoryContainer.append(alert);
   }
 };
 
-// On click of Search, store city as a variable
-$("#search-form").submit(function (e) {
+// On click of Search
+searchForm.submit(function (e) {
   const city = $("#search-box").val();
   e.preventDefault();
-  console.log(city);
-  // Check it's a real city
-
-  // Save to local storage
+  if (city) {
+    console.log(city);
+  }
+  // Add searches from local storage to search history list
+  //   const recentSearches = readFromLocalStorage("recentSearches", []);
+  recentSearches.push(city);
+  console.log(recentSearches);
+  // Remove empty search alert
+  $("#empty-history-alert").remove();
+  // Save current search ty local storage
+  saveToLocalStorage("recentSearches", recentSearches);
+  renderSearches();
 });
 
 const searchHistoryClick = (event) => {
