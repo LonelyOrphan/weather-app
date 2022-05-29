@@ -2,8 +2,8 @@
 
 ## Next Steps
 
-40 mins into video
-style nav and grid
+- Import API
+- Change colour scheme
 
 ## Your Task
 
