@@ -19,14 +19,12 @@ const renderSearches = () => {
   //get search results from localstorage
 
   if (recentSearches.length) {
-    const ul = `<ul id="search-list" class="list-group">
-        <li class="my-list-item py-2 my-2" data-city="list1">An item</li>
-        <li class="my-list-item py-2 my-2" data-city="list2">A second item</li>
-        <li class="my-list-item py-2 my-2" data-city="list3">A third item</li>
-        <li class="my-list-item py-2 my-2" data-city="list4">A fourth item</li>
-        <li class="my-list-item py-2 my-2" data-city="list5">And a fifth one</li>
-        </div>
-    </ul>`;
+    const createRecentCity = (city) => {
+      return `<li class="my-list-item py-2 my-2" data-city="${city}">${city}</li>`;
+    };
+    const recentCities = recentSearches.map(createRecentCity).join("");
+    console.log(recentCities);
+    const ul = `<ul id="search-list" class="list-group">${recentCities}</ul>`;
     searchHistoryContainer.append(ul);
   } else {
     const alert = `<div class="alert alert-light" role="alert">
