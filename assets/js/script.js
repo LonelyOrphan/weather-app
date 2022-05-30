@@ -22,10 +22,6 @@ const saveToLocalStorage = (key, value) => {
 };
 
 const renderSearches = () => {
-  const searchList = $("#search-list");
-  readFromLocalStorage();
-  //get search results from localstorage
-
   if (recentSearches.length) {
     const createRecentCity = (city) => {
       return `<li class="my-list-item py-2 my-2" data-city="${city}">${city}</li>`;
@@ -39,6 +35,13 @@ const renderSearches = () => {
       You have no recent searches`;
     searchHistoryContainer.append(alert);
   }
+};
+
+const addLatestSearch = () => {
+  // get latest city from search history array
+  const latestSearch = recentSearches[recentSearches.length - 1];
+  const li = `<li class="my-list-item py-2 my-2" data-city="${latestSearch}">${latestSearch}</li>`;
+  $("#search-list").append(li);
 };
 
 // Call API for current weather data
@@ -66,7 +69,7 @@ searchForm.submit(function (e) {
   $("#empty-history-alert").remove();
   // Save current search ty local storage
   saveToLocalStorage("recentSearches", recentSearches);
-  renderSearches();
+  addLatestSearch();
 });
 
 const searchHistoryClick = (event) => {
