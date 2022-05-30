@@ -45,16 +45,19 @@ const addLatestSearch = () => {
 };
 
 // Call API for current weather data
-async function getCurrentWeather(city) {
-  await fetch(
-    `api.openweathermap.org/data/2.5/weather?q=${city}&appid=e3be59c0a2f372f3c9629e35f0e1687f`
+const getCurrentWeather = (city) => {
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e3be59c0a2f372f3c9629e35f0e1687f`
   )
     .then((response) => {
-      console.log(response);
       return response.json();
     })
-    .then((data) => {});
-}
+    .then((data) => {
+      console.log(data);
+    });
+};
+
+const renderCurrentWeather = () => {};
 
 // On click of Search
 searchForm.submit(function (e) {
@@ -70,6 +73,7 @@ searchForm.submit(function (e) {
   // Save current search ty local storage
   saveToLocalStorage("recentSearches", recentSearches);
   addLatestSearch();
+  getCurrentWeather(city);
 });
 
 const searchHistoryClick = (event) => {
