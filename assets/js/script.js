@@ -1,7 +1,4 @@
 const searchHistoryContainer = $("#cities-search-history");
-// const recentSearches = readFromLocalStorage("recentSearches", []);
-const recentSearches = ["Sclay"];
-const searchForm = $("#search-form");
 
 // Get info from LS
 const readFromLocalStorage = (key, defaultValue) => {
@@ -15,6 +12,9 @@ const readFromLocalStorage = (key, defaultValue) => {
   }
 };
 
+const recentSearches = readFromLocalStorage("recentSearches", []);
+const searchForm = $("#search-form");
+
 const saveToLocalStorage = (key, value) => {
   // convert value to string
   const valueAsString = JSON.stringify(value);
@@ -23,6 +23,7 @@ const saveToLocalStorage = (key, value) => {
 
 const renderSearches = () => {
   const searchList = $("#search-list");
+  readFromLocalStorage();
   //get search results from localstorage
 
   if (recentSearches.length) {
@@ -40,6 +41,18 @@ const renderSearches = () => {
   }
 };
 
+// Call API for current weather data
+async function getCurrentWeather(city) {
+  await fetch(
+    `api.openweathermap.org/data/2.5/weather?q=${city}&appid=e3be59c0a2f372f3c9629e35f0e1687f`
+  )
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {});
+}
+
 // On click of Search
 searchForm.submit(function (e) {
   const city = $("#search-box").val();
@@ -47,8 +60,6 @@ searchForm.submit(function (e) {
   if (city) {
     console.log(city);
   }
-  // Add searches from local storage to search history list
-  //   const recentSearches = readFromLocalStorage("recentSearches", []);
   recentSearches.push(city);
   console.log(recentSearches);
   // Remove empty search alert
