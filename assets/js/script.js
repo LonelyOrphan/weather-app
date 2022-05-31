@@ -44,6 +44,29 @@ const addLatestSearch = () => {
   $("#search-list").append(li);
 };
 
+const renderCurrentWeather = (city, data) => {
+  console.log(data);
+  // Update heading with city
+  $("#city-heading").text(city);
+  // Update current weather
+  $("#current-weather").text(data.weather[0].main);
+  // Update temp
+  $("#current-temp").text(data.main.temp + " °F");
+  // Update wind speed
+  $("#current-wind-speed").text(data.wind.speed + " mph");
+  // Update humidity
+  $("#current-humidity").text(data.main.humidity + "%");
+  // Update UV index
+  $("#current-uv-index").text();
+};
+
+const renderForecast = (city, data) => {
+  console.log(data);
+  console.log(data.list[6]);
+};
+
+const getCurrentDate = () => {};
+
 // Call API for current weather data
 const getCurrentWeather = (city) => {
   fetch(
@@ -53,11 +76,21 @@ const getCurrentWeather = (city) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      renderCurrentWeather(city, data);
     });
 };
 
-const renderCurrentWeather = () => {};
+const getForecast = (city) => {
+  fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=e3be59c0a2f372f3c9629e35f0e1687f`
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      renderForecast(city, data);
+    });
+};
 
 // On click of Search
 searchForm.submit(function (e) {
@@ -74,6 +107,7 @@ searchForm.submit(function (e) {
   saveToLocalStorage("recentSearches", recentSearches);
   addLatestSearch();
   getCurrentWeather(city);
+  getForecast(city);
 });
 
 const searchHistoryClick = (event) => {
