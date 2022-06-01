@@ -101,10 +101,12 @@ const createForecast = (city, data) => {
     forecastDay5,
   ];
 
-  console.log();
+  displayForecast(forecastArr);
 };
 
-const displayForecast = () => {};
+const displayForecast = (forecastArr) => {
+  console.log(forecastArr);
+};
 
 const getCurrentDate = () => {};
 
