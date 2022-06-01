@@ -60,10 +60,51 @@ const renderCurrentWeather = (city, data) => {
   $("#current-uv-index").text();
 };
 
-const renderForecast = (city, data) => {
-  console.log(data);
-  console.log(data.list[6]);
+const createForecast = (city, data) => {
+  const forecastDay1 = {
+    date: moment.unix(data.list[7].dt).format("Do MMM YYYY"),
+    temp: data.list[7].main.temp,
+    wind: data.list[7].wind.speed,
+    humidity: data.list[7].main.humidity,
+  };
+
+  const forecastDay2 = {
+    date: moment.unix(data.list[15].dt).format("Do MMM YYYY"),
+    temp: data.list[15].main.temp,
+    wind: data.list[15].wind.speed,
+    humidity: data.list[15].main.humidity,
+  };
+  const forecastDay3 = {
+    date: moment.unix(data.list[23].dt).format("Do MMM YYYY"),
+    temp: data.list[23].main.temp,
+    wind: data.list[23].wind.speed,
+    humidity: data.list[23].main.humidity,
+  };
+  const forecastDay4 = {
+    date: moment.unix(data.list[31].dt).format("Do MMM YYYY"),
+    temp: data.list[31].main.temp,
+    wind: data.list[31].wind.speed,
+    humidity: data.list[31].main.humidity,
+  };
+  const forecastDay5 = {
+    date: moment.unix(data.list[39].dt).format("Do MMM YYYY"),
+    temp: data.list[39].main.temp,
+    wind: data.list[39].wind.speed,
+    humidity: data.list[39].main.humidity,
+  };
+
+  const forecastArr = [
+    forecastDay1,
+    forecastDay2,
+    forecastDay3,
+    forecastDay4,
+    forecastDay5,
+  ];
+
+  console.log();
 };
+
+const displayForecast = () => {};
 
 const getCurrentDate = () => {};
 
@@ -88,7 +129,7 @@ const getForecast = (city) => {
       return response.json();
     })
     .then((data) => {
-      renderForecast(city, data);
+      createForecast(city, data);
     });
 };
 
