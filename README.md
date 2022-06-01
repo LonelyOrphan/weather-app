@@ -1,9 +1,14 @@
 # weather-app
 
-## Next Steps
+A weather dashboard that shows both the current weather and forecast for the next 5 days for a chosen city.
 
-- Import API
-- Change colour scheme
+The user can search for their selected city and it will be saved in the search history.
+
+The search history can be used to get weather data for that city again by clicking the chosen city.
+
+Screenshot
+
+Live app: https://lonelyorphan.github.io/weather-app/
 
 ## Your Task
 
