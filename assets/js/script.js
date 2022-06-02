@@ -44,12 +44,16 @@ const addLatestSearch = () => {
   $("#search-list").append(li);
 };
 
+const weatherIcon = (condition) => {};
+
 const renderCurrentWeather = (city, data) => {
   console.log(data);
   // Update heading with city
   $("#city-heading").text(city);
   // Update current weather
   $("#current-weather").text(data.weather[0].main);
+  // Update icon
+  $("#current-weather-icon").attr("src", weatherIcon());
   // Update temp
   $("#current-temp").text(data.main.temp + " °F");
   // Update wind speed
@@ -105,7 +109,30 @@ const createForecast = (city, data) => {
 };
 
 const displayForecast = (forecastArr) => {
-  console.log(forecastArr);
+  $("#forecast-date1").text(forecastArr[0].date);
+  $("#forecast-temp1").text(forecastArr[0].temp + "°F");
+  $("#forecast-wind1").text(forecastArr[0].wind + "mph");
+  $("#forecast-humidity1").text(forecastArr[0].humidity + "%");
+
+  $("#forecast-date2").text(forecastArr[1].date);
+  $("#forecast-temp2").text(forecastArr[1].temp + "°F");
+  $("#forecast-wind2").text(forecastArr[1].wind + "mph");
+  $("#forecast-humidity2").text(forecastArr[1].humidity + "%");
+
+  $("#forecast-date3").text(forecastArr[2].date);
+  $("#forecast-temp3").text(forecastArr[2].temp + "°F");
+  $("#forecast-wind3").text(forecastArr[2].wind + "mph");
+  $("#forecast-humidity3").text(forecastArr[2].humidity + "%");
+
+  $("#forecast-date4").text(forecastArr[3].date);
+  $("#forecast-temp4").text(forecastArr[3].temp + "°F");
+  $("#forecast-wind4").text(forecastArr[3].wind + "mph");
+  $("#forecast-humidity4").text(forecastArr[3].humidity + "%");
+
+  $("#forecast-date5").text(forecastArr[4].date);
+  $("#forecast-temp5").text(forecastArr[4].temp + "°F");
+  $("#forecast-wind5").text(forecastArr[4].wind + "mph");
+  $("#forecast-humidity5").text(forecastArr[4].humidity + "%");
 };
 
 const getCurrentDate = () => {};
