@@ -1,5 +1,7 @@
 # weather-app
 
+# next-steps: switch statement is returning the default value for weather icon
+
 A weather dashboard that shows both the current weather and forecast for the next 5 days for a chosen city.
 
 The user can search for their selected city and it will be saved in the search history.

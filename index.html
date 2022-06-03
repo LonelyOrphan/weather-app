@@ -46,13 +46,13 @@
         <div class="row border">
           <div
             id="forecast-container"
-            class="col-sm-12 col-md-8 col-lg-9 border"
-          >
+            class="col-sm-12 col-md-8 col-lg-9 border">
             <div id="main-weather-info" class="row border m-3 weather-info-container">
-              <div id="current-weather-info">
+              <div id="current-weather-info" class="display-switch">
                 <div class="row mx-1 mt-3"><h4 id="city-heading">City Placeholder</h4></div>
-                <div class="row mx-1"><h5>Time and date placeholder</h5></div>
-                <div class="row mx-1 mb-3"><img id="current-weather-icon" src="" alt="Current Weather Icon"></div>
+                <div class="row mx-1"><h5 id="current-date-time"></h5></div>
+                <div class="row mx-1 mb-3"><img id="current-weather-icon" class="icon" 
+                  src="" alt="Current Weather Icon"></div>
                 <div id="current-weather" class="row mx-1 mb-3"><h5></h5></div>
                 
                 <div class="row mx-1">
@@ -73,7 +73,7 @@
                 </div>
               </div>
             </div>
-            <div id="5-day-forecast" class="row border mx-3 justify-content-center">
+            <div id="5-day-forecast" class="row border mx-3 justify-content-center display-switch">
               <div><h4 class="m-3">5 Day Forecast</h4></div>
               <div class="card mx-2" style="width: 8rem;">
                 <div class="card-body">

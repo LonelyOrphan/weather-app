@@ -44,16 +44,51 @@ const addLatestSearch = () => {
   $("#search-list").append(li);
 };
 
-const weatherIcon = (condition) => {};
+const weatherIcon = (condition) => {
+  switch (condition) {
+    case "Thunderstorm":
+      return "http://openweathermap.org/img/wn/11d@2x.png";
+    case "Drizzle":
+      return "http://openweathermap.org/img/wn/09d@2x.png";
+    case "Rain":
+      return "http://openweathermap.org/img/wn/10d@2x.png";
+    case "Snow":
+      return "http://openweathermap.org/img/wn/13d@2x.png";
+    case "Mist" || "Smoke" || "Haze" || "Dust":
+      return "http://openweathermap.org/img/wn/50d@2x.png";
+    case "Clear":
+      return "http://openweathermap.org/img/wn/01d@2x.png";
+    case "Clouds":
+      return "http://openweathermap.org/img/wn/03d@2x.png";
+    default:
+      return "http://openweathermap.org/img/wn/10d@2x.png";
+  }
+};
+
+const getUvi = (latLongObj) => {
+  const lat = latLongObj.lat;
+  const lon = latLongObj.lon;
+  fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=e3be59c0a2f372f3c9629e35f0e1687f`
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      $("#current-uv-index").text(data.current.uvi);
+    });
+};
 
 const renderCurrentWeather = (city, data) => {
   console.log(data);
   // Update heading with city
   $("#city-heading").text(city);
+  // Show current time
+  $("#current-date-time").text(moment().format("Do MMM YYYY"));
   // Update current weather
   $("#current-weather").text(data.weather[0].main);
   // Update icon
-  $("#current-weather-icon").attr("src", weatherIcon());
+  $("#current-weather-icon").attr("src", weatherIcon(data.weather[0].main));
   // Update temp
   $("#current-temp").text(data.main.temp + " °F");
   // Update wind speed
@@ -61,7 +96,9 @@ const renderCurrentWeather = (city, data) => {
   // Update humidity
   $("#current-humidity").text(data.main.humidity + "%");
   // Update UV index
-  $("#current-uv-index").text();
+  getUvi(data.coord);
+  // Show info containers
+  $("#current-weather-info").removeClass("display-switch");
 };
 
 const createForecast = (city, data) => {
@@ -133,6 +170,8 @@ const displayForecast = (forecastArr) => {
   $("#forecast-temp5").text(forecastArr[4].temp + "°F");
   $("#forecast-wind5").text(forecastArr[4].wind + "mph");
   $("#forecast-humidity5").text(forecastArr[4].humidity + "%");
+
+  $("#5-day-forecast").removeClass("display-switch");
 };
 
 const getCurrentDate = () => {};

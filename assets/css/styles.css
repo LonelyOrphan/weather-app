@@ -20,8 +20,6 @@ body {
 
 .my-list-item {
   color: var(--umber);
-  /* margin: 1rem 0rem;
-  padding: 0.5rem; */
   border-radius: 1rem;
   list-style: none;
   border: var(--blue-bell) 1px solid;
@@ -31,4 +29,12 @@ body {
 
 .weather-info-container {
   background-color: var(--thistle);
+}
+
+.icon {
+  width: 10rem;
+}
+
+.display-switch {
+  display: none;
 }
