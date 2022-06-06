@@ -4,7 +4,7 @@ The user can search for their selected city and it will be saved in the search h
 
 The search history can be used to get weather data for that city again by clicking the chosen city.
 
-Screenshot
+[Screenshot](./assets/images/screenshot.jpg)
 
 Live app: https://lonelyorphan.github.io/weather-app/
 
