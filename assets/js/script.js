@@ -27,9 +27,7 @@ const renderSearches = () => {
       return `<li class="my-list-item py-2 my-2" data-city="${city}">${city}</li>`;
     };
     const recentCities = recentSearches.map(createRecentCity).join("");
-    const ul = `<ul id="search-list" class="list-group">${recentCities}</ul>`;
-    console.log(ul);
-    searchHistoryContainer.append(ul);
+    searchHistoryContainer.append(recentCities);
   } else {
     const alert = `<div id="empty-history-alert" class="alert alert-light text-center" role="alert">
       You have no recent searches`;
