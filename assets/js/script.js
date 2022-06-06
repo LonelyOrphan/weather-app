@@ -72,7 +72,7 @@ const renderCurrentWeather = (city, data) => {
     `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
   );
   // Update temp
-  $("#current-temp").text(data.main.temp + " °C");
+  $("#current-temp").text(data.main.temp.toFixed() + " °C");
   // Update wind speed
   $("#current-wind-speed").text(data.wind.speed + " mph");
   // Update humidity
@@ -89,7 +89,7 @@ const createForecast = (city, data) => {
     date: moment.unix(data.list[7].dt).format("Do MMM YYYY"),
     weather: data.list[7].weather[0].main,
     icon: `http://openweathermap.org/img/wn/${data.list[7].weather[0].icon}@2x.png`,
-    temp: data.list[7].main.temp,
+    temp: data.list[7].main.temp.toFixed(),
     wind: data.list[7].wind.speed,
     humidity: data.list[7].main.humidity,
   };
@@ -98,7 +98,7 @@ const createForecast = (city, data) => {
     date: moment.unix(data.list[15].dt).format("Do MMM YYYY"),
     weather: data.list[15].weather[0].main,
     icon: `http://openweathermap.org/img/wn/${data.list[15].weather[0].icon}@2x.png`,
-    temp: data.list[15].main.temp,
+    temp: data.list[15].main.temp.toFixed(),
     wind: data.list[15].wind.speed,
     humidity: data.list[15].main.humidity,
   };
@@ -106,7 +106,7 @@ const createForecast = (city, data) => {
     date: moment.unix(data.list[23].dt).format("Do MMM YYYY"),
     weather: data.list[23].weather[0].main,
     icon: `http://openweathermap.org/img/wn/${data.list[23].weather[0].icon}@2x.png`,
-    temp: data.list[23].main.temp,
+    temp: data.list[23].main.temp.toFixed(),
     wind: data.list[23].wind.speed,
     humidity: data.list[23].main.humidity,
   };
@@ -114,7 +114,7 @@ const createForecast = (city, data) => {
     date: moment.unix(data.list[31].dt).format("Do MMM YYYY"),
     weather: data.list[31].weather[0].main,
     icon: `http://openweathermap.org/img/wn/${data.list[31].weather[0].icon}@2x.png`,
-    temp: data.list[31].main.temp,
+    temp: data.list[31].main.temp.toFixed(),
     wind: data.list[31].wind.speed,
     humidity: data.list[31].main.humidity,
   };
@@ -122,7 +122,7 @@ const createForecast = (city, data) => {
     date: moment.unix(data.list[39].dt).format("Do MMM YYYY"),
     weather: data.list[39].weather[0].main,
     icon: `http://openweathermap.org/img/wn/${data.list[39].weather[0].icon}@2x.png`,
-    temp: data.list[39].main.temp,
+    temp: data.list[39].main.temp.toFixed(),
     wind: data.list[39].wind.speed,
     humidity: data.list[39].main.humidity,
   };
@@ -226,7 +226,8 @@ const searchHistoryClick = (event) => {
   const target = $(event.target);
   if (target.is("li")) {
     const cityName = target.attr("data-city");
-    console.log(cityName);
+    $("#search-box").val(cityName);
+    searchForm.submit();
   }
 };
 
