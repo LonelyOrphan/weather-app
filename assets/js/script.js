@@ -39,7 +39,7 @@ const addLatestSearch = () => {
   // get latest city from search history array
   const latestSearch = recentSearches[recentSearches.length - 1];
   const li = `<li class="my-list-item py-2 my-2" data-city="${latestSearch}">${latestSearch}</li>`;
-  $("#search-list").append(li);
+  $(searchHistoryContainer).append(li);
 };
 
 const getUvi = (latLongObj) => {
@@ -202,7 +202,7 @@ const getForecast = (city) => {
     });
 };
 
-// On click of Search
+// On form submit (click of search or search history element)
 searchForm.submit(function (e) {
   const city = $("#search-box").val();
   e.preventDefault();
