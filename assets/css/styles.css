@@ -31,8 +31,13 @@ body {
   background-color: var(--thistle);
 }
 
-.icon {
+.current-weather-icon {
   width: 10rem;
+}
+
+.forecast-icon {
+  width: 4rem;
+  justify-content: left;
 }
 
 .display-switch {

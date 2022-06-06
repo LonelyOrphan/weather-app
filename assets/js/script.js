@@ -44,27 +44,6 @@ const addLatestSearch = () => {
   $("#search-list").append(li);
 };
 
-const weatherIcon = (condition) => {
-  switch (condition) {
-    case "Thunderstorm":
-      return "http://openweathermap.org/img/wn/11d@2x.png";
-    case "Drizzle":
-      return "http://openweathermap.org/img/wn/09d@2x.png";
-    case "Rain":
-      return "http://openweathermap.org/img/wn/10d@2x.png";
-    case "Snow":
-      return "http://openweathermap.org/img/wn/13d@2x.png";
-    case "Mist" || "Smoke" || "Haze" || "Dust":
-      return "http://openweathermap.org/img/wn/50d@2x.png";
-    case "Clear":
-      return "http://openweathermap.org/img/wn/01d@2x.png";
-    case "Clouds":
-      return "http://openweathermap.org/img/wn/03d@2x.png";
-    default:
-      return "http://openweathermap.org/img/wn/10d@2x.png";
-  }
-};
-
 const getUvi = (latLongObj) => {
   const lat = latLongObj.lat;
   const lon = latLongObj.lon;
@@ -88,9 +67,12 @@ const renderCurrentWeather = (city, data) => {
   // Update current weather
   $("#current-weather").text(data.weather[0].main);
   // Update icon
-  $("#current-weather-icon").attr("src", weatherIcon(data.weather[0].main));
+  $("#current-weather-icon").attr(
+    "src",
+    `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+  );
   // Update temp
-  $("#current-temp").text(data.main.temp + " °F");
+  $("#current-temp").text(data.main.temp + " °C");
   // Update wind speed
   $("#current-wind-speed").text(data.wind.speed + " mph");
   // Update humidity
@@ -102,8 +84,11 @@ const renderCurrentWeather = (city, data) => {
 };
 
 const createForecast = (city, data) => {
+  console.log(data.list[7].weather[0].icon);
   const forecastDay1 = {
     date: moment.unix(data.list[7].dt).format("Do MMM YYYY"),
+    weather: data.list[7].weather[0].main,
+    icon: `http://openweathermap.org/img/wn/${data.list[7].weather[0].icon}@2x.png`,
     temp: data.list[7].main.temp,
     wind: data.list[7].wind.speed,
     humidity: data.list[7].main.humidity,
@@ -111,24 +96,32 @@ const createForecast = (city, data) => {
 
   const forecastDay2 = {
     date: moment.unix(data.list[15].dt).format("Do MMM YYYY"),
+    weather: data.list[15].weather[0].main,
+    icon: `http://openweathermap.org/img/wn/${data.list[15].weather[0].icon}@2x.png`,
     temp: data.list[15].main.temp,
     wind: data.list[15].wind.speed,
     humidity: data.list[15].main.humidity,
   };
   const forecastDay3 = {
     date: moment.unix(data.list[23].dt).format("Do MMM YYYY"),
+    weather: data.list[23].weather[0].main,
+    icon: `http://openweathermap.org/img/wn/${data.list[23].weather[0].icon}@2x.png`,
     temp: data.list[23].main.temp,
     wind: data.list[23].wind.speed,
     humidity: data.list[23].main.humidity,
   };
   const forecastDay4 = {
     date: moment.unix(data.list[31].dt).format("Do MMM YYYY"),
+    weather: data.list[31].weather[0].main,
+    icon: `http://openweathermap.org/img/wn/${data.list[31].weather[0].icon}@2x.png`,
     temp: data.list[31].main.temp,
     wind: data.list[31].wind.speed,
     humidity: data.list[31].main.humidity,
   };
   const forecastDay5 = {
     date: moment.unix(data.list[39].dt).format("Do MMM YYYY"),
+    weather: data.list[39].weather[0].main,
+    icon: `http://openweathermap.org/img/wn/${data.list[39].weather[0].icon}@2x.png`,
     temp: data.list[39].main.temp,
     wind: data.list[39].wind.speed,
     humidity: data.list[39].main.humidity,
@@ -147,27 +140,37 @@ const createForecast = (city, data) => {
 
 const displayForecast = (forecastArr) => {
   $("#forecast-date1").text(forecastArr[0].date);
-  $("#forecast-temp1").text(forecastArr[0].temp + "°F");
+  $("#forecast-weather1").text(forecastArr[0].weather);
+  $("#forecast-icon1").attr("src", forecastArr[0].icon);
+  $("#forecast-temp1").text(forecastArr[0].temp + "°C");
   $("#forecast-wind1").text(forecastArr[0].wind + "mph");
   $("#forecast-humidity1").text(forecastArr[0].humidity + "%");
 
   $("#forecast-date2").text(forecastArr[1].date);
-  $("#forecast-temp2").text(forecastArr[1].temp + "°F");
+  $("#forecast-weather2").text(forecastArr[1].weather);
+  $("#forecast-icon2").attr("src", forecastArr[1].icon);
+  $("#forecast-temp2").text(forecastArr[1].temp + "°C");
   $("#forecast-wind2").text(forecastArr[1].wind + "mph");
   $("#forecast-humidity2").text(forecastArr[1].humidity + "%");
 
   $("#forecast-date3").text(forecastArr[2].date);
-  $("#forecast-temp3").text(forecastArr[2].temp + "°F");
+  $("#forecast-weather3").text(forecastArr[2].weather);
+  $("#forecast-icon3").attr("src", forecastArr[2].icon);
+  $("#forecast-temp3").text(forecastArr[2].temp + "°C");
   $("#forecast-wind3").text(forecastArr[2].wind + "mph");
   $("#forecast-humidity3").text(forecastArr[2].humidity + "%");
 
   $("#forecast-date4").text(forecastArr[3].date);
-  $("#forecast-temp4").text(forecastArr[3].temp + "°F");
+  $("#forecast-weather4").text(forecastArr[3].weather);
+  $("#forecast-icon4").attr("src", forecastArr[3].icon);
+  $("#forecast-temp4").text(forecastArr[3].temp + "°C");
   $("#forecast-wind4").text(forecastArr[3].wind + "mph");
   $("#forecast-humidity4").text(forecastArr[3].humidity + "%");
 
   $("#forecast-date5").text(forecastArr[4].date);
-  $("#forecast-temp5").text(forecastArr[4].temp + "°F");
+  $("#forecast-weather5").text(forecastArr[4].weather);
+  $("#forecast-icon5").attr("src", forecastArr[4].icon);
+  $("#forecast-temp5").text(forecastArr[4].temp + "°C");
   $("#forecast-wind5").text(forecastArr[4].wind + "mph");
   $("#forecast-humidity5").text(forecastArr[4].humidity + "%");
 
@@ -179,7 +182,7 @@ const getCurrentDate = () => {};
 // Call API for current weather data
 const getCurrentWeather = (city) => {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e3be59c0a2f372f3c9629e35f0e1687f`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=e3be59c0a2f372f3c9629e35f0e1687f`
   )
     .then((response) => {
       return response.json();
@@ -191,7 +194,7 @@ const getCurrentWeather = (city) => {
 
 const getForecast = (city) => {
   fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=e3be59c0a2f372f3c9629e35f0e1687f`
+    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=e3be59c0a2f372f3c9629e35f0e1687f`
   )
     .then((response) => {
       return response.json();
